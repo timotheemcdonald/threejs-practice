@@ -7,6 +7,8 @@ let camera = new THREE.PerspectiveCamera(
     1000,
 );
 
+camera.position.z = 5;
+
 let renderer = new THREE.WebGLRenderer({antialias: true});
 renderer.setClearColor('#e5e5e5');
 renderer.setSize(window.innerWidth, window.innerHeight);
@@ -16,7 +18,19 @@ window.addEventListener('resize', () => {
     renderer.setSize(window.innerWidth, window.innerHeight);
     camera.aspect = window.innerWidth / window.innerHeight
 
-    camera.updateProjectMatrix();
+    camera.updateProjectionMatrix();
 })
+
+
+
+let geometry = new THREE.SphereGeometry(1, 10, 10);
+let material = new THREE.MeshLambertMaterial({color: 0xFFCC00});
+let mesh = new THREE.Mesh(geometry, material);
+
+scene.add(mesh);
+
+let light = new THREE.PointLight(0xFFFFFF, 1, 500);
+light.position.set(10,0,25);
+scene.add(light);
 
 renderer.render(scene, camera);
