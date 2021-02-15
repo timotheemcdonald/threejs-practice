@@ -23,9 +23,12 @@ window.addEventListener('resize', () => {
 
 
 
-let geometry = new THREE.SphereGeometry(1, 10, 10);
+let geometry = new THREE.BoxGeometry(1, 1, 1);
 let material = new THREE.MeshLambertMaterial({color: 0xFFCC00});
 let mesh = new THREE.Mesh(geometry, material);
+
+mesh.position.x = 2;
+mesh.position.y = 2;
 
 scene.add(mesh);
 
@@ -33,4 +36,9 @@ let light = new THREE.PointLight(0xFFFFFF, 1, 500);
 light.position.set(10,0,25);
 scene.add(light);
 
-renderer.render(scene, camera);
+let render = function(){
+    requestAnimationFrame(render);
+    renderer.render(scene, camera)
+};
+
+render();
