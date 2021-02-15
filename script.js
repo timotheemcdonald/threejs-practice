@@ -18,3 +18,5 @@ window.addEventListener('resize', () => {
 
     camera.updateProjectMatrix();
 })
+
+renderer.render(scene, camera);
